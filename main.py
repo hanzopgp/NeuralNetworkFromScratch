@@ -1,17 +1,18 @@
+from neuralnetwork.DataExample import DataExample
 from neuralnetwork.Layer import Layer
 from neuralnetwork.NeuralNetwork import NeuralNetwork
 
-NB_INPUTS = 4
+NB_INPUTS = 2  # Inputs are x and y
 NB_NEURONS = 5
-DATA = [[1, 2, 3, 2.5],
-        [2.0, 5.0, -1.0, 2.0],
-        [-1.5, 2.7, 3.3, -0.8]]
-
 
 if __name__ == '__main__':
+    data_example = DataExample(100, 3) # 100 points on the graph, 3 colors
+    data_example.make_data()
+    #d ata_example.display_data()
+
     neural_network = NeuralNetwork()
     neural_network.add_layer(Layer(NB_INPUTS, NB_NEURONS))
-    neural_network.add_layer(Layer(NB_INPUTS, NB_NEURONS))
-    neural_network.forward_layers(DATA)
+    # neural_network.add_layer(Layer(NB_INPUTS, NB_NEURONS))
+    neural_network.forward_layers(data_example.x)
+    neural_network.use_activation_function_all()
     neural_network.print_layers_outputs()
-
