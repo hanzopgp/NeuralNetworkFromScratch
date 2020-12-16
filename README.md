@@ -18,4 +18,5 @@
 ## Links
 
 - https://nnfs.io
+- https://nnfs.io/neural_network_animations
 - https://en.wikipedia.org/wiki/Neural_network
