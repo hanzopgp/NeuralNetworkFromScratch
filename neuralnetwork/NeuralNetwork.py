@@ -10,9 +10,9 @@ class NeuralNetwork:
         for i in range(len(self.layers)):
             self.layers[i].forward(inputs)
 
-    def use_activation_function_all(self):
+    def use_activation_function_all(self, activation_function_type):
         for i in range(len(self.layers)):
-            self.layers[i].use_activation_function()
+            self.layers[i].use_activation_function(activation_function_type)
 
     def print_layers_outputs(self):
         cpt = 0
