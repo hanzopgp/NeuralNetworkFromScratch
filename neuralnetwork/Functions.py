@@ -15,5 +15,5 @@ class Functions:
             return 0
 
     @staticmethod
-    def sigmoid(x):
+    def normalization_sigmoid(x):
         return 1 / (1 + np.exp(-x))
