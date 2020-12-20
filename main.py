@@ -4,7 +4,7 @@ from neuralnetwork.Layer import Layer
 
 NB_INPUTS = 2  # Inputs are x and y
 NB_NEURONS = 5
-ACTIVATION_FUNCTION_TYPE = "ReLU"  # "sigmoid" / "ReLU"
+ACTIVATION_FUNCTION_TYPE = "ReLU"  # "softmax" / "ReLU"
 
 if __name__ == '__main__':
     data_example = DataExample(100, 3)  # 100 points on the graph, 3 colors

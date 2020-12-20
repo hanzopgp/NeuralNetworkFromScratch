@@ -15,5 +15,9 @@ class Functions:
             return 0
 
     @staticmethod
+    def activation_softmax(x):
+        return np.exp(x)
+
+    @staticmethod
     def normalization_sigmoid(x):
         return 1 / (1 + np.exp(-x))
