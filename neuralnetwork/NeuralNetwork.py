@@ -1,6 +1,3 @@
-from neuralnetwork.Functions import Functions
-
-
 class NeuralNetwork:
 
     def __init__(self):

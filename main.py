@@ -11,4 +11,6 @@ if __name__ == '__main__':
     neural_network.add_layer(Layer(2, 3, "ReLU"))
     neural_network.add_layer(Layer(3, 3, "softmax"))
     neural_network.forward_layers(data_example.x)
+
+    print(data_example.x)
     neural_network.print_layers_outputs()
