@@ -8,15 +8,9 @@ class Functions:
         return np.maximum(0, x)
 
     @staticmethod
-    def activation_step(x):
-        if x > 0:
-            return x
-        else:
-            return 0
-
-    @staticmethod
     def activation_softmax(x):
-        return np.exp(x)
+        exp_values = np.exp(x)
+        return exp_values / np.sum(exp_values)
 
     @staticmethod
     def normalization_sigmoid(x):
