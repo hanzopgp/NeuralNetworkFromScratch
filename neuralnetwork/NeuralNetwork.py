@@ -1,18 +1,21 @@
+from neuralnetwork.Functions import Functions
+
+
 class NeuralNetwork:
 
     def __init__(self):
         self.layers = []
+        self.output = []
 
     def add_layer(self, layer):
         self.layers.append(layer)
 
     def forward_layers(self, inputs):
-        for i in range(len(self.layers)):
-            self.layers[i].forward(inputs)
-
-    def use_activation_function_all(self, activation_function_type):
-        for i in range(len(self.layers)):
-            self.layers[i].use_activation_function(activation_function_type)
+        for i in range(len(self.layers) - 1):
+            if i == 0:
+                self.layers[i].forward(inputs)
+            else:
+                self.layers[i].forward(self.layers[i-1].output)
 
     def print_layers_outputs(self):
         cpt = 0

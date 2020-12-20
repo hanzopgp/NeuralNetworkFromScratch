@@ -9,8 +9,8 @@ class Functions:
 
     @staticmethod
     def activation_softmax(x):
-        exp_values = np.exp(x)
-        return exp_values / np.sum(exp_values)
+        exp_values = np.exp(x - np.max(x, axis=1, keepdims=True))  # avoiding negative values et overflow errors
+        return exp_values / np.sum(exp_values, axis=1, keepdims=True)  # normalizing values
 
     @staticmethod
     def normalization_sigmoid(x):

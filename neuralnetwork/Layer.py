@@ -7,18 +7,17 @@ np.random.seed(0)
 
 class Layer:
 
-    def __init__(self, nb_inputs, nb_neurons):
+    def __init__(self, nb_inputs, nb_neurons, activation_type):
         self.synaptic_weights = np.random.randn(nb_inputs, nb_neurons)/10  # reversed nb_neurons and nb_inputs to avoid using transpose
+        self.activation_type = activation_type
         self.biases = np.zeros((1, nb_neurons))
         self.output = 0
 
     def forward(self, inputs):
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases
-
-    def use_activation_function(self, activation_function_type):
-        if activation_function_type == "softmax":
+        if self.activation_type == "softmax":
             self.output = Functions.activation_softmax(self.output)
-        if activation_function_type == "ReLU":
+        elif self.activation_type == "ReLU":
             self.output = Functions.activation_ReLU(self.output)
 
     def print_output(self):
