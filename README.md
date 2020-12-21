@@ -9,7 +9,7 @@
 
 ## Presentation
 
->After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch. I'm following [sentdex](https://www.youtube.com/user/sentdex)'s tutorial on youtube. I'm currently working on this project.
+>After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch. I'm following [sentdex](https://www.youtube.com/user/sentdex)'s tutorial on youtube. I'm also currently reading the [nnfs](https://nnfs.io) book.
 
 ## How to use
 
@@ -20,3 +20,4 @@
 - https://nnfs.io
 - https://nnfs.io/neural_network_animations
 - https://en.wikipedia.org/wiki/Neural_network
+- https://www.youtube.com/user/sentdex
