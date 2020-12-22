@@ -8,7 +8,7 @@ if __name__ == '__main__':
     # data_example.display_data()
 
     neural_network = NeuralNetwork(data_example.x)
-    neural_network.add_layer(Layer(2, 3, "ReLU"))
-    neural_network.add_layer(Layer(3, 3, "softmax"))
+    neural_network.add_layer(Layer(2, 3, "ReLU"))  # hidden layer
+    neural_network.add_layer(Layer(3, 3, "softmax"))  # output layer
     neural_network.forward_layers()
     neural_network.print_layers_outputs()
