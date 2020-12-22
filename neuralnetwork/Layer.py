@@ -17,6 +17,10 @@ class Layer:
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases
         if self.activation_type == "softmax":
             self.output = Functions.activation_softmax(self.output)
+        elif self.activation_type == "step":
+            self.output = Functions.activation_step(self.output)
+        elif self.activation_type == "sigmoid":
+            self.output = Functions.activation_sigmoid(self.output)
         elif self.activation_type == "ReLU":
             self.output = Functions.activation_ReLU(self.output)
 

@@ -21,7 +21,7 @@ class Functions:
         return np.maximum(0, x)
 
     @staticmethod
-    def activation_softmax(x):
+    def activation_softmax(x):  # used in output layers to display probabilities
         exp_values = np.exp(x - np.max(x, axis=1, keepdims=True))  # avoiding negative values et overflow errors
         return exp_values / np.sum(exp_values, axis=1, keepdims=True)  # normalizing values
 
