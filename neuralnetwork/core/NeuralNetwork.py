@@ -19,7 +19,7 @@ class NeuralNetwork:
         print("========================== TRAINING DATA ==========================")
         print(self.inputs)
         cpt = 1
-        for i in range(len(self.layers) - 1):
+        for i in range(len(self.layers)-1):
             print("========================== LAYER NUMBER " + str(cpt) + " ==========================")
             self.layers[i].print_output()
             cpt += 1
