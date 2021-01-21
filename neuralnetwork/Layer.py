@@ -1,6 +1,9 @@
 import numpy as np
 
-from neuralnetwork.Functions import Functions
+from neuralnetwork.ActivationReLU import ActivationReLU
+from neuralnetwork.ActivationSigmoid import ActivationSigmoid
+from neuralnetwork.ActivationSoftmax import ActivationSoftmax
+from neuralnetwork.ActivationStep import ActivationStep
 
 np.random.seed(0)
 
@@ -16,13 +19,21 @@ class Layer:
     def forward(self, inputs):
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases
         if self.activation_type == "softmax":
-            self.output = Functions.activation_softmax(self.output)
+            softmax = ActivationSoftmax()
+            softmax.forward(self.output)
+            self.output = softmax.output
         elif self.activation_type == "step":
-            self.output = Functions.activation_step(self.output)
+            step = ActivationStep()
+            step.forward(self.output)
+            self.output = step.output
         elif self.activation_type == "sigmoid":
-            self.output = Functions.activation_sigmoid(self.output)
+            sigmoid = ActivationSigmoid()
+            sigmoid.forward(self.output)
+            self.output = sigmoid.output
         elif self.activation_type == "ReLU":
-            self.output = Functions.activation_ReLU(self.output)
+            relu = ActivationReLU()
+            relu.forward(self.output)
+            self.output = relu.output
 
     def print_output(self):
         print(self.output)
