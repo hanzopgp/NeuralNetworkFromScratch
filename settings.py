@@ -1,0 +1,6 @@
+NB_LINES_PRINTED = 5
+
+NB_DATA_VALUES = 100
+NB_DATA_TYPES = 3
+
+LOSS_FUNCTION_TYPE = "CategoricalCrossentropy"

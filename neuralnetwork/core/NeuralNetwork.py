@@ -1,6 +1,5 @@
 from neuralnetwork.lossfunctions.LossCategoricalCrossentropy import LossCategoricalCrossentropy
-from main import NB_LINES_PRINTED
-
+import settings
 
 class NeuralNetwork:
 
@@ -17,9 +16,8 @@ class NeuralNetwork:
     def calculate_loss(self):
         if self.loss_type == "CategoricalCrossentropy":
             loss_function = LossCategoricalCrossentropy()
-            loss_function.calculate(self.layers[-1].output, self.correct_outputs)
-            print(self.correct_outputs)
-            print(loss_function.output)
+            loss_value = loss_function.calculate(self.layers[-1].output, self.correct_outputs)
+            print(loss_value)
 
     def forward_layers(self):
         for i in range(len(self.layers)):
@@ -30,7 +28,7 @@ class NeuralNetwork:
 
     def print_infos(self):
         print("========================== TRAINING DATA ==========================")
-        print(self.inputs[:NB_LINES_PRINTED])
+        print(self.inputs[:settings.NB_LINES_PRINTED])
         cpt = 1
         for i in range(len(self.layers)-1):
             print("========================== LAYER NUMBER " + str(cpt) + " ==========================")
@@ -38,4 +36,4 @@ class NeuralNetwork:
             cpt += 1
         print("========================== OUTPUT PROBABILITIES ==========================")
         print(self.layers[-1].print_output())
-        print("========================== LOSS VALUES ==========================")
+        print("========================== LOSS VALUE ==========================")
