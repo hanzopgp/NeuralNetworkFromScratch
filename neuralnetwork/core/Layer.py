@@ -1,9 +1,9 @@
 import numpy as np
 
-from neuralnetwork.ActivationReLU import ActivationReLU
-from neuralnetwork.ActivationSigmoid import ActivationSigmoid
-from neuralnetwork.ActivationSoftmax import ActivationSoftmax
-from neuralnetwork.ActivationStep import ActivationStep
+from neuralnetwork.activationfunctions.ActivationReLU import ActivationReLU
+from neuralnetwork.activationfunctions.ActivationSigmoid import ActivationSigmoid
+from neuralnetwork.activationfunctions.ActivationSoftmax import ActivationSoftmax
+from neuralnetwork.activationfunctions.ActivationStep import ActivationStep
 
 np.random.seed(0)
 

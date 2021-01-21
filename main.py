@@ -1,6 +1,6 @@
-from neuralnetwork.DataExample import DataExample
-from neuralnetwork.NeuralNetwork import NeuralNetwork
-from neuralnetwork.Layer import Layer
+from neuralnetwork.data.DataExample import DataExample
+from neuralnetwork.core.NeuralNetwork import NeuralNetwork
+from neuralnetwork.core.Layer import Layer
 
 if __name__ == '__main__':
     data_example = DataExample(5, 3)  # 100 points on the graph, 3 colors
