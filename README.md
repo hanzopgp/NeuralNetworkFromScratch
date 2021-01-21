@@ -9,7 +9,7 @@
 
 ## Presentation
 
->After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch. I'm following [sentdex](https://www.youtube.com/user/sentdex)'s tutorial on youtube. I'm also currently reading the [nnfs](https://nnfs.io) book.
+>After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch using only numpy. I'm also currently reading the [nnfs](https://nnfs.io) book.
 
 ## How to use
 
