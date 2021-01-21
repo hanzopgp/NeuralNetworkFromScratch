@@ -4,6 +4,7 @@ from neuralnetwork.activationfunctions.ActivationReLU import ActivationReLU
 from neuralnetwork.activationfunctions.ActivationSigmoid import ActivationSigmoid
 from neuralnetwork.activationfunctions.ActivationSoftmax import ActivationSoftmax
 from neuralnetwork.activationfunctions.ActivationStep import ActivationStep
+from main import NB_LINES_PRINTED
 
 np.random.seed(0)
 
@@ -36,4 +37,4 @@ class Layer:
             self.output = relu.output
 
     def print_output(self):
-        print(self.output)
+        print(self.output[:NB_LINES_PRINTED])
