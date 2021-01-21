@@ -4,7 +4,7 @@ from neuralnetwork.activationfunctions.ActivationReLU import ActivationReLU
 from neuralnetwork.activationfunctions.ActivationSigmoid import ActivationSigmoid
 from neuralnetwork.activationfunctions.ActivationSoftmax import ActivationSoftmax
 from neuralnetwork.activationfunctions.ActivationStep import ActivationStep
-import settings
+from neuralnetwork import settings
 
 np.random.seed(0)
 

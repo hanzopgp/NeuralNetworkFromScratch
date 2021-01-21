@@ -1,5 +1,8 @@
+import numpy as np
+
 from neuralnetwork.lossfunctions.LossCategoricalCrossentropy import LossCategoricalCrossentropy
-import settings
+from neuralnetwork import settings
+
 
 class NeuralNetwork:
 
@@ -7,6 +10,8 @@ class NeuralNetwork:
         self.inputs = inputs
         self.correct_outputs = correct_outputs
         self.loss_type = loss_type
+        self.loss_value = 0
+        self.accuracy = 0
         self.layers = []
         self.output = []
 
@@ -16,8 +21,13 @@ class NeuralNetwork:
     def calculate_loss(self):
         if self.loss_type == "CategoricalCrossentropy":
             loss_function = LossCategoricalCrossentropy()
-            loss_value = loss_function.calculate(self.layers[-1].output, self.correct_outputs)
-            print(loss_value)
+            self.loss_value = loss_function.calculate(self.layers[-1].output, self.correct_outputs)
+
+    def calculating_accuracy(self):
+        predictions = np.argmax(self.layers[-1].output, axis=1)
+        if len(self.correct_outputs.shape) == 2:
+            self.correct_outputs = np.argmax(self.correct_outputs, axis=1)
+        self.accuracy = np.mean(predictions == self.correct_outputs)
 
     def forward_layers(self):
         for i in range(len(self.layers)):
@@ -37,3 +47,5 @@ class NeuralNetwork:
         print("========================== OUTPUT PROBABILITIES ==========================")
         print(self.layers[-1].print_output())
         print("========================== LOSS VALUE ==========================")
+        print("loss_value = ", self.loss_value)
+        print("accuracy = ", self.accuracy)
