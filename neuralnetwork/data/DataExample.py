@@ -1,10 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import nnfs
+from nnfs.datasets import vertical_data
+nnfs.init()
 
 np.random.seed(0)
 
 
-class DataExample:
+class DataExample:  # Equivalent to NNFS spiral data
 
     def __init__(self, points, classes):
         self.points = points
@@ -12,7 +15,7 @@ class DataExample:
         self.x = []
         self.y = []
 
-    def make_data(self):
+    def make_spiral_data(self):
         x = np.zeros((self.points*self.classes, 2))
         y = np.zeros(self.points*self.classes, dtype='uint8')
         for class_nb in range(self.classes):
@@ -21,6 +24,11 @@ class DataExample:
             t = np.linspace(class_nb*4, (class_nb+1)*4, self.points) + (np.random.randn(self.points) * 0.2)
             x[ix] = np.c_[r*np.sin(t*2.5), r*np.cos(t*2.5)]
             y[ix] = class_nb
+        self.x = x
+        self.y = y
+
+    def make_vertical_date(self):
+        x, y = vertical_data(samples=100, classes=3)
         self.x = x
         self.y = y
 
