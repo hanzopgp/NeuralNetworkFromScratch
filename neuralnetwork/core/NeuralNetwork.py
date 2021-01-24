@@ -47,5 +47,5 @@ class NeuralNetwork:
         print("========================== OUTPUT PROBABILITIES ==========================")
         print(self.layers[-1].print_output())
         print("========================== LOSS VALUE ==========================")
-        print("loss_value = ", self.loss_value)
-        print("accuracy = ", self.accuracy)
+        print("loss_value =", self.loss_value)
+        print("accuracy =", self.accuracy)
