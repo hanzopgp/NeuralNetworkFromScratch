@@ -29,12 +29,12 @@ if __name__ == '__main__':
     print("Dense 2:")
     print(best_dense2_weights)
     print(best_dense2_biases)
-    for iteration in range(10000):
+    for iteration in range(100_000):
         # Generate a new set of weights for iteration
-        neural_network.layers[0].synaptic_weights = 0.05 * np.random.randn(2, 3)
-        neural_network.layers[0].biases = 0.05 * np.random.randn(1, 3)
-        neural_network.layers[1].synaptic_weights = 0.05 * np.random.randn(3, 3)
-        neural_network.layers[1].biases = 0.05 * np.random.randn(1, 3)
+        neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 3)
+        neural_network.layers[0].biases += 0.05 * np.random.randn(1, 3)
+        neural_network.layers[1].synaptic_weights += 0.05 * np.random.randn(3, 3)
+        neural_network.layers[1].biases += 0.05 * np.random.randn(1, 3)
         neural_network.forward_layers()
         neural_network.calculate_loss()
         neural_network.calculating_accuracy()
@@ -47,6 +47,11 @@ if __name__ == '__main__':
             best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
             best_dense2_biases = neural_network.layers[1].biases.copy()
             lowest_loss = neural_network.loss_value
+        else:
+            best_dense1_weights = neural_network.layers[0].synaptic_weights.copy()
+            best_dense1_biases = neural_network.layers[0].biases.copy()
+            best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
+            best_dense2_biases = neural_network.layers[1].biases.copy()
 
 
 
