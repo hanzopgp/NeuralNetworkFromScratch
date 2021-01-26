@@ -21,7 +21,7 @@ Chapter 5 - Loss<br>
 Chapter 6 - Optimization<br>
 Chapter 7 - Derivatives<br>
 Chapter 8 - Gradients, Partial Derivatives, and the Chain Rule<br>
-Chapter 9 - Backpropagation <---------- HERE ATM<br>
+Chapter 9 - Backpropagation <---------------------------------------- HERE ATM<br>
 Chapter 10 - Optimizers<br>
 Chapter 11 - Testing Data<br>
 Chapter 12 - Validation Data<br>
