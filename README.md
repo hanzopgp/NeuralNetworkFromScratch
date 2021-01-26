@@ -38,7 +38,7 @@ Chapter 22 - Model Predicting/Inference
 
 ## How to use
 
->I'm currently thinking of an example to show how this network will be working.
+>I'm currently thinking of examples. I will demonstrate how to use this neural network once it is done.
 
 ## How does it work
 
