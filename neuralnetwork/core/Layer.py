@@ -16,8 +16,13 @@ class Layer:
         self.activation_type = activation_type
         self.biases = np.zeros((1, nb_neurons))
         self.output = 0
+        self.inputs = np.array([])
+        self.dweights = np.array([])
+        self.dbiases = np.array([])
+        self.dinputs = np.array([])
 
     def forward(self, inputs):
+        self.inputs = inputs
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases
         if self.activation_type == "softmax":
             softmax = ActivationSoftmax()
@@ -35,6 +40,13 @@ class Layer:
             relu = ActivationReLU()
             relu.forward(self.output)
             self.output = relu.output
+
+    def backward(self, dvalues):
+        # Gradients on parameters
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
+        # Gradient on values
+        self.dinputs = np.dot(dvalues, self.synaptic_weights.T)
 
     def print_output(self):
         print(self.output[:settings.NB_LINES_PRINTED])
