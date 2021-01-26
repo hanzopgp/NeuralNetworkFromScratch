@@ -13,27 +13,27 @@
 
 ## Book's chapters 
 
-Chapter 1 - Introducing Neural Networks
-Chapter 2 - Coding Our First Neurons
-Chapter 3 - Adding Layers
-Chapter 4 - Activation Functions
-Chapter 5 - Loss
-Chapter 6 - Optimization
-Chapter 7 - Derivatives
-Chapter 8 - Gradients, Partial Derivatives, and the Chain Rule
-Chapter 9 - Backpropagation <---------- HERE ATM
-Chapter 10 - Optimizers
-Chapter 11 - Testing Data
-Chapter 12 - Validation Data
-Chapter 13 - Training Dataset
-Chapter 14 - L1 and L2 Regularization
-Chapter 15 - Dropout
-Chapter 16 - Binary Logistic Regression
-Chapter 17 - Regression
-Chapter 18 - Model Object
-Chapter 19 - A Real Dataset
-Chapter 20 - Model Evaluation
-Chapter 21 - Saving and Loading Model Information
+Chapter 1 - Introducing Neural Networks<br>
+Chapter 2 - Coding Our First Neurons<br>
+Chapter 3 - Adding Layers<br>
+Chapter 4 - Activation Functions<br>
+Chapter 5 - Loss<br>
+Chapter 6 - Optimization<br>
+Chapter 7 - Derivatives<br>
+Chapter 8 - Gradients, Partial Derivatives, and the Chain Rule<br>
+Chapter 9 - Backpropagation <---------- HERE ATM<br>
+Chapter 10 - Optimizers<br>
+Chapter 11 - Testing Data<br>
+Chapter 12 - Validation Data<br>
+Chapter 13 - Training Dataset<br>
+Chapter 14 - L1 and L2 Regularization<br>
+Chapter 15 - Dropout<br>
+Chapter 16 - Binary Logistic Regression<br>
+Chapter 17 - Regression<br>
+Chapter 18 - Model Object<br>
+Chapter 19 - A Real Dataset<br>
+Chapter 20 - Model Evaluation<br>
+Chapter 21 - Saving and Loading Model Information<br>
 Chapter 22 - Model Predicting/Inference
 
 ## How to use
