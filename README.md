@@ -9,7 +9,7 @@
 
 ## Presentation
 
->After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch using only numpy. I'm also currently reading the [nnfs](https://nnfs.io) book. I'm trying to go really slow on this project so I can learn and memorize all the informations. I'm reading a maximum of 2 chapters per session while making sure I understand each line of code and their theoretical context.
+>After coding a really simple perceptron, I wanted to build a multi-layer neural network from scratch using only numpy. I'm also currently reading the [nnfs](https://nnfs.io) book. I'm trying to go really slow on this project so I can learn and memorize all the informations. I'm reading a maximum of 2 chapters per session while making sure I understand each line of code and their theoretical context. I'm also writing a PDF file where you can find the mathematics behind that neural network, you can find it at the root of the repository.
 
 ## Book's chapters 
 
