@@ -59,6 +59,42 @@ class NeuralNetwork:
                 optimizer = OptimizerSGD(learning_rate)
                 optimizer.update_params(self.layers[i])
 
+    def train(self):
+        # Training loop
+        for epoch in range(settings.NB_NN_EPOCHS):
+
+            # Forward pass
+            if settings.COMBINED_SOFTMAX_CROSSENTROPY:
+                self.forward_layers(combined=True)
+            else:
+                self.forward_layers(combined=False)
+                self.calculate_loss()
+            self.calculating_accuracy()
+
+            # Printing epoch network values
+            if not epoch % settings.NB_NN_EPOCHS_STEP:
+                # print(neural_network.print_infos())
+                print(f'epoch: {epoch}, ' +
+                      f'acc: {self.accuracy:.3f}, ' +
+                      f'loss: {self.loss_value:.3f}')
+
+            # Backpropagation
+            prediction = self.layers[-1].output.copy()
+            self.backward_layers(prediction)  # Giving the outputs of the neural network and correct outputs
+
+            # Updating weights and biases
+            self.optimize_layers(settings.LEARNING_RATE)
+
+    def predict(self, x):
+        self.inputs = x
+        print("input :", x)
+        self.forward_layers(settings.COMBINED_SOFTMAX_CROSSENTROPY)
+        print("probabilities :", self.layers[-1].output)
+        color = ["blue", "red", "green"]
+        color_index = int(np.argmax(self.layers[-1].output))
+        print("color predicted :", color[color_index])
+        print("confidence :", int(np.max(self.layers[-1].output)*100), "%")
+
     def print_infos(self):
         print("========================== TRAINING DATA ==========================")
         print(self.inputs[:settings.NB_LINES_PRINTED])

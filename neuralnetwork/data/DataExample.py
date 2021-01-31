@@ -15,8 +15,8 @@ class DataExample:  # Equivalent to NNFS spiral data
     def __init__(self, points, classes):
         self.points = points
         self.classes = classes
-        self.x = []
-        self.y = []
+        self.x = []  # x are 2D inputs
+        self.y = []  # y are 1D results
 
     def make_spiral_data(self):
         x = np.zeros((self.points*self.classes, 2))
