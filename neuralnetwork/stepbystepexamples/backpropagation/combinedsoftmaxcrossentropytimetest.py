@@ -35,5 +35,5 @@ if __name__ == '__main__':
 
     t1 = timeit(lambda: f1(), number=10000)
     t2 = timeit(lambda: f2(), number=10000)
-    print("Saving", t2/t1, "s")
+    print(int(t2/t1), "times faster")
 
