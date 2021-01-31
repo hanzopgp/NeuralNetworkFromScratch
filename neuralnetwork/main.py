@@ -15,9 +15,12 @@ if __name__ == '__main__':
     data_example.display_data()
 
     # Initializing neural network
-    neural_network = NeuralNetwork(data_example.x, data_example.y, settings.LOSS_FUNCTION_TYPE)
-    neural_network.add_layer(Layer(2, 3, settings.ACTIVATION_TYPES[0]))  # hidden layer + activation type
-    neural_network.add_layer(Layer(3, 3, settings.ACTIVATION_TYPES[1]))  # output layer + activation type
+    neural_network = NeuralNetwork(data_example.x,
+                                   data_example.y,
+                                   settings.LOSS_FUNCTION_TYPE,
+                                   settings.OPTIMIZE_FUNCTION_TYPE)
+    neural_network.add_layer(Layer(2, 64, settings.ACTIVATION_TYPES[0]))  # hidden layer + activation type
+    neural_network.add_layer(Layer(64, 3, settings.ACTIVATION_TYPES[1]))  # output layer + activation type
 
     # Optimizing neural network using randomness to lower loss
     lowest_loss = 9999999  # some initial value
@@ -38,9 +41,9 @@ if __name__ == '__main__':
     for iteration in range(100_000):
 
         # Generate a new set of weights for iteration
-        neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 3)
-        neural_network.layers[0].biases += 0.05 * np.random.randn(1, 3)
-        neural_network.layers[1].synaptic_weights += 0.05 * np.random.randn(3, 3)
+        neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 64)
+        neural_network.layers[0].biases += 0.05 * np.random.randn(1, 64)
+        neural_network.layers[1].synaptic_weights += 0.05 * np.random.randn(64, 3)
         neural_network.layers[1].biases += 0.05 * np.random.randn(1, 3)
 
         if settings.COMBINED_SOFTMAX_CROSSENTROPY:
@@ -50,6 +53,7 @@ if __name__ == '__main__':
             neural_network.calculate_loss()
 
         neural_network.calculating_accuracy()
+        # neural_network.optimize_layers(settings.LEARNING_RATE)
 
         if neural_network.loss_value < lowest_loss:
             print('New set of weights found, iteration:', iteration,

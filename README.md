@@ -51,3 +51,4 @@ Chapter 22 - Model Predicting/Inference
 - https://en.wikipedia.org/wiki/Neural_network
 - https://www.youtube.com/user/sentdex
 - https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+- https://machinelearning.wtf/acronyms/
