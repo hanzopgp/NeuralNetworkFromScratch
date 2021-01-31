@@ -1,4 +1,3 @@
-import numpy as np
 import time
 
 from neuralnetwork.data.DataExample import DataExample
@@ -14,61 +13,43 @@ if __name__ == '__main__':
     data_example.make_vertical_date()
     data_example.display_data()
 
-    # Initializing neural network
+    # Initializing neural network and its layers
     neural_network = NeuralNetwork(data_example.x,
                                    data_example.y,
                                    settings.LOSS_FUNCTION_TYPE,
                                    settings.OPTIMIZE_FUNCTION_TYPE)
-    neural_network.add_layer(Layer(2, 64, settings.ACTIVATION_TYPES[0]))  # hidden layer + activation type
-    neural_network.add_layer(Layer(64, 3, settings.ACTIVATION_TYPES[1]))  # output layer + activation type
+    neural_network.add_layer(Layer(settings.NB_NN_INPUTS,
+                                   settings.NB_NN_HIDDEN_LAYER_NEURONS,
+                                   settings.ACTIVATION_TYPES[0]))  # hidden layer + activation type
+    neural_network.add_layer(Layer(settings.NB_NN_HIDDEN_LAYER_NEURONS,
+                                   settings.NB_DATA_TYPES,
+                                   settings.ACTIVATION_TYPES[1]))  # output layer + activation type
 
-    # Optimizing neural network using randomness to lower loss
-    lowest_loss = 9999999  # some initial value
-    best_dense1_weights = neural_network.layers[0].synaptic_weights.copy()
-    best_dense1_biases = neural_network.layers[0].biases.copy()
-    best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
-    best_dense2_biases = neural_network.layers[1].biases.copy()
-    print("Dense 1 :")
-    print(best_dense1_weights)
-    print(best_dense1_biases)
-    print("Dense 2:")
-    print(best_dense2_weights)
-    print(best_dense2_biases)
-
+    # Keeping track of training duration
     start_time = time.time()
 
-    # Training
-    for iteration in range(100_000):
+    # Training loop
+    for epoch in range(10_001):
 
-        # Generate a new set of weights for iteration
-        neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 64)
-        neural_network.layers[0].biases += 0.05 * np.random.randn(1, 64)
-        neural_network.layers[1].synaptic_weights += 0.05 * np.random.randn(64, 3)
-        neural_network.layers[1].biases += 0.05 * np.random.randn(1, 3)
-
+        # Forward pass
         if settings.COMBINED_SOFTMAX_CROSSENTROPY:
-            neural_network.forward_layers(combined=True, y_true=data_example.y)
+            neural_network.forward_layers(combined=True)
         else:
-            neural_network.forward_layers(combined=False, y_true=[])
+            neural_network.forward_layers(combined=False)
             neural_network.calculate_loss()
-
         neural_network.calculating_accuracy()
-        # neural_network.optimize_layers(settings.LEARNING_RATE)
 
-        if neural_network.loss_value < lowest_loss:
-            print('New set of weights found, iteration:', iteration,
-                  'loss:', neural_network.loss_value,
-                  'acc:', neural_network.accuracy)
-            best_dense1_weights = neural_network.layers[0].synaptic_weights.copy()
-            best_dense1_biases = neural_network.layers[0].biases.copy()
-            best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
-            best_dense2_biases = neural_network.layers[1].biases.copy()
-            lowest_loss = neural_network.loss_value
-        else:
-            best_dense1_weights = neural_network.layers[0].synaptic_weights.copy()
-            best_dense1_biases = neural_network.layers[0].biases.copy()
-            best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
-            best_dense2_biases = neural_network.layers[1].biases.copy()
+        # Printing epoch network values
+        if not epoch % 100:
+            print(neural_network.print_infos())
+            print(f'epoch: {epoch}, ' +
+                  f'acc: {neural_network.accuracy:.3f}, ' +
+                  f'loss: {neural_network.loss_value:.3f}')
+
+        # Backpropagation
+        prediction = neural_network.layers[-1].output.copy()
+        neural_network.backward_layers(prediction)  # Giving the outputs of the neural network and correct outputs
+        neural_network.optimize_layers(settings.LEARNING_RATE)
 
     print("---> Training took %s seconds" % (time.time() - start_time))
 

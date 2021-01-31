@@ -1,5 +1,7 @@
 import numpy as np
 
+from neuralnetwork.activationfunctions.ActivationReLU import ActivationReLU
+from neuralnetwork.activationxlossfunctions.ActivationSoftmaxLossCategoricalCrossentropy import ActivationSoftmaxLossCategoricalCrossentropy
 from neuralnetwork.lossfunctions.LossCategoricalCrossentropy import LossCategoricalCrossentropy
 from neuralnetwork import settings
 from neuralnetwork.optimizerfunctions.OptimizerSGD import OptimizerSGD
@@ -20,17 +22,25 @@ class NeuralNetwork:
     def add_layer(self, layer):
         self.layers.append(layer)
 
-    def forward_layers(self, combined, y_true):
+    def forward_layers(self, combined):
         for i in range(len(self.layers)):
             if i == 0:
                 self.layers[i].forward(self.inputs)
             elif i == len(self.layers) - 1:
-                if combined:  # If combined we used this special function on the last layer
-                    self.loss_value = self.layers[-1].softmax_crossentropy_forward_backward(self.layers[-2].output, y_true)
+                if combined:  # If combined we use this special function on the last layer
+                    self.loss_value = self.layers[-1].softmax_crossentropy_forward_backward(self.layers[-2].output, self.correct_outputs)
                 else:
                     self.layers[-1].forward(self.layers[-2].output)
             else:
                 self.layers[i].forward(self.layers[i-1].output)
+
+    def backward_layers(self, previous_output):
+        softmax_crossentropy = ActivationSoftmaxLossCategoricalCrossentropy()
+        relu = ActivationReLU()
+        softmax_crossentropy.backward(previous_output, self.correct_outputs)
+        self.layers[-1].backward(softmax_crossentropy.dinputs)
+        relu.backward(self.layers[-1].dinputs)
+        self.layers[-2].backward(relu.dinputs)
 
     def calculate_loss(self):
         if self.loss_type == "CategoricalCrossentropy":
@@ -59,6 +69,8 @@ class NeuralNetwork:
             cpt += 1
         print("========================== OUTPUT PROBABILITIES ==========================")
         print(self.layers[-1].print_output())
+        print("========================== CORRECT OUTPUTS ==========================")
+        print(self.correct_outputs)
         print("========================== LOSS VALUE ==========================")
         print("loss_value =", self.loss_value)
         print("accuracy =", self.accuracy)

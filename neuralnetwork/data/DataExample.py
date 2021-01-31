@@ -1,10 +1,13 @@
+from neuralnetwork import settings
+
 import numpy as np
 import matplotlib.pyplot as plt
 import nnfs
 from nnfs.datasets import vertical_data
 nnfs.init()
 
-np.random.seed(0)
+
+np.random.seed(settings.RANDOM_SEED_DATA)
 
 
 class DataExample:  # Equivalent to NNFS spiral data
@@ -28,7 +31,7 @@ class DataExample:  # Equivalent to NNFS spiral data
         self.y = y
 
     def make_vertical_date(self):
-        x, y = vertical_data(samples=100, classes=3)
+        x, y = vertical_data(self.points, self.classes)
         self.x = x
         self.y = y
 
