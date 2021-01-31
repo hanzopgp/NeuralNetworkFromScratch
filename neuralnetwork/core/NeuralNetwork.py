@@ -34,8 +34,8 @@ class NeuralNetwork:
             if i == 0:
                 self.layers[i].forward(self.inputs)
             elif i == len(self.layers) - 1:
-                if combined:
-                    self.loss_value = self.layers[-1].forward_last_layer_and_calculate_loss(self.layers[-2].output, y_true)
+                if combined:  # If combined we used this special function on the last layer
+                    self.loss_value = self.layers[-1].softmax_crossentropy_forward_backward(self.layers[-2].output, y_true)
                 else:
                     self.layers[-1].forward(self.layers[-2].output)
             else:

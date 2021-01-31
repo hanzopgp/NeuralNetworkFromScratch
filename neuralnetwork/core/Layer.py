@@ -42,7 +42,7 @@ class Layer:
             relu.forward(self.output)
             self.output = relu.output
 
-    def forward_last_layer_and_calculate_loss(self, inputs, y_true):
+    def softmax_crossentropy_forward_backward(self, inputs, y_true):
         self.inputs = inputs  # Keeping inputs values
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases  # Neuron dot product
         # Forward pass

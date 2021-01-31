@@ -13,7 +13,6 @@ def f1():
     # Combined
     sofmax_crossentropy = ActivationSoftmaxLossCategoricalCrossentropy()
     sofmax_crossentropy.backward(softmax_outputs, class_targets)
-    dvaluesCombined = sofmax_crossentropy.dinputs
 
 
 def f2():
@@ -23,7 +22,6 @@ def f2():
     activation.output = softmax_outputs
     loss.backward(softmax_outputs, class_targets)
     activation.backward(loss.dinputs)
-    dvaluesNotCombined = activation.dinputs
 
 
 if __name__ == '__main__':

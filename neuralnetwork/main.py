@@ -1,4 +1,5 @@
 import numpy as np
+import time
 
 from neuralnetwork.data.DataExample import DataExample
 from neuralnetwork.core.NeuralNetwork import NeuralNetwork
@@ -31,8 +32,11 @@ if __name__ == '__main__':
     print(best_dense2_weights)
     print(best_dense2_biases)
 
+    start_time = time.time()
+
     # Training
     for iteration in range(100_000):
+
         # Generate a new set of weights for iteration
         neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 3)
         neural_network.layers[0].biases += 0.05 * np.random.randn(1, 3)
@@ -62,7 +66,7 @@ if __name__ == '__main__':
             best_dense2_weights = neural_network.layers[1].synaptic_weights.copy()
             best_dense2_biases = neural_network.layers[1].biases.copy()
 
-
+    print("---> Training took %s seconds" % (time.time() - start_time))
 
 
 
