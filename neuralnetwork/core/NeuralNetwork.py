@@ -29,10 +29,15 @@ class NeuralNetwork:
             self.correct_outputs = np.argmax(self.correct_outputs, axis=1)
         self.accuracy = np.mean(predictions == self.correct_outputs)
 
-    def forward_layers(self):
+    def forward_layers(self, combined, y_true):
         for i in range(len(self.layers)):
             if i == 0:
                 self.layers[i].forward(self.inputs)
+            elif i == len(self.layers) - 1:
+                if combined:
+                    self.loss_value = self.layers[-1].forward_last_layer_and_calculate_loss(self.layers[-2].output, y_true)
+                else:
+                    self.layers[-1].forward(self.layers[-2].output)
             else:
                 self.layers[i].forward(self.layers[i-1].output)
 

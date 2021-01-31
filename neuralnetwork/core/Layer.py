@@ -5,6 +5,7 @@ from neuralnetwork.activationfunctions.ActivationSigmoid import ActivationSigmoi
 from neuralnetwork.activationfunctions.ActivationSoftmax import ActivationSoftmax
 from neuralnetwork.activationfunctions.ActivationStep import ActivationStep
 from neuralnetwork import settings
+from neuralnetwork.activationxlossfunctions.ActivationSoftmaxLossCategoricalCrossentropy import ActivationSoftmaxLossCategoricalCrossentropy
 
 np.random.seed(0)
 
@@ -24,15 +25,15 @@ class Layer:
     def forward(self, inputs):
         self.inputs = inputs
         self.output = np.dot(inputs, self.synaptic_weights) + self.biases
-        if self.activation_type == "softmax":
+        if self.activation_type == "Softmax":
             softmax = ActivationSoftmax()
             softmax.forward(self.output)
             self.output = softmax.output
-        elif self.activation_type == "step":
+        elif self.activation_type == "Step":
             step = ActivationStep()
             step.forward(self.output)
             self.output = step.output
-        elif self.activation_type == "sigmoid":
+        elif self.activation_type == "Sigmoid":
             sigmoid = ActivationSigmoid()
             sigmoid.forward(self.output)
             self.output = sigmoid.output
@@ -40,6 +41,14 @@ class Layer:
             relu = ActivationReLU()
             relu.forward(self.output)
             self.output = relu.output
+
+    def forward_last_layer_and_calculate_loss(self, inputs, y_true):
+        softmax_crossentropy = ActivationSoftmaxLossCategoricalCrossentropy()
+        loss = softmax_crossentropy.forward(inputs, y_true)
+        softmax_crossentropy.backward(softmax_crossentropy.output, y_true)
+        self.output = softmax_crossentropy.output
+        self.dinputs = softmax_crossentropy.dinputs
+        return loss
 
     def backward(self, dvalues):
         # Gradients on parameters
