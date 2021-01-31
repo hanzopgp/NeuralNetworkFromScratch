@@ -43,10 +43,14 @@ class Layer:
             self.output = relu.output
 
     def forward_last_layer_and_calculate_loss(self, inputs, y_true):
+        self.inputs = inputs
+        self.output = np.dot(inputs, self.synaptic_weights) + self.biases
+
         softmax_crossentropy = ActivationSoftmaxLossCategoricalCrossentropy()
-        loss = softmax_crossentropy.forward(inputs, y_true)
-        softmax_crossentropy.backward(softmax_crossentropy.output, y_true)
+        loss = softmax_crossentropy.forward(self.output, y_true)
         self.output = softmax_crossentropy.output
+
+        softmax_crossentropy.backward(softmax_crossentropy.output, y_true)
         self.dinputs = softmax_crossentropy.dinputs
         return loss
 

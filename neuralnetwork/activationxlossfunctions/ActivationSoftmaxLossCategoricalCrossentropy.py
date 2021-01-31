@@ -15,7 +15,8 @@ class ActivationSoftmaxLossCategoricalCrossentropy:
     def forward(self, inputs, y_true):
         self.activation_function.forward(inputs)
         self.output = self.activation_function.output
-        return self.loss_function.calculate(self.output, y_true)
+        loss = self.loss_function.calculate(self.output, y_true)
+        return loss
 
     def backward(self, dvalues, y_true):  # Faster backward step
         samples = len(dvalues)

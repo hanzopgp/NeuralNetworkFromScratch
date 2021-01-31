@@ -5,6 +5,7 @@ from neuralnetwork.core.NeuralNetwork import NeuralNetwork
 from neuralnetwork.core.Layer import Layer
 from neuralnetwork import settings
 
+
 if __name__ == '__main__':
 
     # Example data
@@ -14,8 +15,8 @@ if __name__ == '__main__':
 
     # Initializing neural network
     neural_network = NeuralNetwork(data_example.x, data_example.y, settings.LOSS_FUNCTION_TYPE)
-    neural_network.add_layer(Layer(2, 3, settings.ACTIVATION_TYPE_FIRST[0]))  # hidden layer + activation type
-    neural_network.add_layer(Layer(3, 3, settings.ACTIVATION_TYPE_FIRST[1]))  # output layer + activation type
+    neural_network.add_layer(Layer(2, 3, settings.ACTIVATION_TYPES[0]))  # hidden layer + activation type
+    neural_network.add_layer(Layer(3, 3, settings.ACTIVATION_TYPES[1]))  # output layer + activation type
 
     # Optimizing neural network using randomness to lower loss
     lowest_loss = 9999999  # some initial value
@@ -29,6 +30,8 @@ if __name__ == '__main__':
     print("Dense 2:")
     print(best_dense2_weights)
     print(best_dense2_biases)
+
+    # Training
     for iteration in range(100_000):
         # Generate a new set of weights for iteration
         neural_network.layers[0].synaptic_weights += 0.05 * np.random.randn(2, 3)
