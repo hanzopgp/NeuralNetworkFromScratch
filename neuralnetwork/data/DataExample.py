@@ -30,7 +30,7 @@ class DataExample:  # Equivalent to NNFS spiral data
         self.x = x
         self.y = y
 
-    def make_vertical_date(self):
+    def make_vertical_data(self):
         x, y = vertical_data(self.points, self.classes)
         self.x = x
         self.y = y
