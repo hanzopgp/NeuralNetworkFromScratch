@@ -34,7 +34,7 @@ class NeuralNetwork:
             else:
                 self.layers[i].forward(self.layers[i-1].output)
 
-    def backward_layers(self, previous_output):
+    def backward_layers(self, previous_output):  # Make it scalable
         softmax_crossentropy = ActivationSoftmaxLossCategoricalCrossentropy()
         relu = ActivationReLU()
         softmax_crossentropy.backward(previous_output, self.correct_outputs)
@@ -62,7 +62,6 @@ class NeuralNetwork:
     def train(self):
         # Training loop
         for epoch in range(settings.NB_NN_EPOCHS):
-
             # Forward pass
             if settings.COMBINED_SOFTMAX_CROSSENTROPY:
                 self.forward_layers(combined=True)
@@ -70,18 +69,15 @@ class NeuralNetwork:
                 self.forward_layers(combined=False)
                 self.calculate_loss()
             self.calculating_accuracy()
-
             # Printing epoch network values
             if not epoch % settings.NB_NN_EPOCHS_STEP:
                 # print(neural_network.print_infos())
                 print(f'epoch: {epoch}, ' +
                       f'acc: {self.accuracy:.3f}, ' +
                       f'loss: {self.loss_value:.3f}')
-
             # Backpropagation
             prediction = self.layers[-1].output.copy()
             self.backward_layers(prediction)  # Giving the outputs of the neural network and correct outputs
-
             # Updating weights and biases
             self.optimize_layers(settings.LEARNING_RATE)
 

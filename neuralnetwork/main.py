@@ -10,7 +10,10 @@ if __name__ == '__main__':
 
     # Example data
     data_example = DataExample(settings.NB_DATA_VALUES, settings.NB_DATA_TYPES)  # 100 points on the graph, 3 colors
-    data_example.make_spiral_data()
+    if settings.DATA == "vertical":
+        data_example.make_vertical_data()
+    elif settings.DATA == "spiral":
+        data_example.make_spiral_data()
     data_example.display_data()
 
     # Initializing neural network and its layers
