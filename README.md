@@ -40,11 +40,11 @@ Chapter 22 - Model Predicting/Inference
 
 ## How to use
 
->I'm currently thinking of examples. I will demonstrate how to use this neural network once it is done.
+>I'm currently thinking about interesting examples. Currently I'm testing it on different 2D vertical/spiral data plots.
 
 ## How does it work
 
->I don't have enough knowledge yet to talk about that. You can check the links below if you want further informations.
+>You can check the links below if you want further informations.
  
 ## Links
 
